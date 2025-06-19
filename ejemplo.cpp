@@ -9,7 +9,7 @@ struct EMP{
 
 int main(){
     EMP EMPLEADOS[100];
-    int n;
+    int n, maxven;
     cin>>n;
     for(int i=0; i<n; i++){
         cin>>EMPLEADOS[i].num;
@@ -26,5 +26,11 @@ int main(){
     for(int i=0; i<n; i++){
         cout<<EMPLEADOS[i].ventot<<endl;
     }
+    maxven = EMPLEADOS[0].ventot;
+    for(int i=1; i<n; i++){
+        if(EMPLEADOS[i].ventot > maxven)
+            maxven = EMPLEADOS[i].ventot;
+    }
+    cout<<maxven;
     return 0;
 }
