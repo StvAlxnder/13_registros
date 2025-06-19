@@ -20,11 +20,11 @@ int main(){
         cin>>EMPLEADOS[i].sal;
     }
     for(int i=0; i<n; i++){
-        cout<<endl<<EMPLEADOS[i].num<<endl;
-        cout<<EMPLEADOS[i].nom<<endl;
         for(int j=0; j<12; j++)
-            cout<<EMPLEADOS[i].ven[j]<<" ";
-        cout<<EMPLEADOS[i].sal<<endl<<endl;
+            EMPLEADOS[i].ventot = EMPLEADOS[i].ventot + EMPLEADOS[i].ven[j];
+    }
+    for(int i=0; i<n; i++){
+        cout<<EMPLEADOS[i].ventot<<endl;
     }
     return 0;
 }
