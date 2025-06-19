@@ -44,8 +44,15 @@ int main(){
     }
     cout<<"\nSALARIOS\n";
     for(int i=0; i<n; i++){
-        cout<<"Empleado #"<<i+1<<": "
+        cout<<"Empleado #"<<EMPLEADOS[i].num<<": "
             <<EMPLEADOS[i].sal<<endl;
+    }
+    cout<<"\nVENTAS DE DICIEMBRE MENORES A 30\n";
+    for(int i=0; i<n; i++){
+        if(EMPLEADOS[i].ven[11]<30){
+            cout<<"\nNumero: "<<EMPLEADOS[i].num<<endl;
+            cout<<"Nombre: "<<EMPLEADOS[i].nom<<endl;
+        }
     }
     return 0;
 }
