@@ -37,6 +37,15 @@ int main(){
     }
     cout<<"\nEMPLEADO CON MAYOR VENTA TOTAL\n";
     cout<<"Numero: "<<EMPLEADOS[numemp].num<<endl;
-    cout<<"Nombre: "<<EMPLEADOS[numemp].nom<<endl<<endl;
+    cout<<"Nombre: "<<EMPLEADOS[numemp].nom<<endl;
+    for(int i=1; i<n; i++){
+        if(EMPLEADOS[i].ventot > 100)
+            EMPLEADOS[i].sal = EMPLEADOS[i].sal*1.1;
+    }
+    cout<<"\nSALARIOS\n";
+    for(int i=0; i<n; i++){
+        cout<<"Empleado #"<<i+1<<": "
+            <<EMPLEADOS[i].sal<<endl;
+    }
     return 0;
 }
