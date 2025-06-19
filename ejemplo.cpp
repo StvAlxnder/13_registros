@@ -9,7 +9,7 @@ struct EMP{
 
 int main(){
     EMP EMPLEADOS[100];
-    int n, maxven;
+    int n, maxven, numemp;
     cout<<"\nREGISTRO DE DATOS DE LOS EMPLEADOS\n";
     cout<<"Numero de empleados: ";  cin>>n;
     for(int i=0; i<n; i++){
@@ -28,15 +28,15 @@ int main(){
         for(int j=0; j<12; j++)
             EMPLEADOS[i].ventot = EMPLEADOS[i].ventot + EMPLEADOS[i].ven[j];
     }
-    for(int i=0; i<n; i++){
-        cout<<"Venta total del empleado #"<<i+1<<": ";
-        cout<<EMPLEADOS[i].ventot<<endl;
-    }
     maxven = EMPLEADOS[0].ventot;
+    numemp = 0;
     for(int i=1; i<n; i++){
         if(EMPLEADOS[i].ventot > maxven)
             maxven = EMPLEADOS[i].ventot;
+            numemp = i;
     }
-    cout<<"Mayor venta total: "<<maxven<<endl;
+    cout<<"\nEMPLEADO CON MAYOR VENTA TOTAL\n";
+    cout<<"Numero: "<<EMPLEADOS[numemp].num<<endl;
+    cout<<"Nombre: "<<EMPLEADOS[numemp].nom<<endl<<endl;
     return 0;
 }
