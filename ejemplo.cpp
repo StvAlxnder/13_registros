@@ -7,6 +7,8 @@ struct EMP{
     float ven[12], sal, ventot;
 };
 
+bool ventaDiciembreMenor30 = false;
+
 int main(){
     EMP EMPLEADOS[100];
     int n, maxven, numemp;
@@ -44,11 +46,14 @@ int main(){
         cout<<"Empleado #"<<EMPLEADOS[i].num<<": "
             <<EMPLEADOS[i].sal<<endl;
     }
-    cout<<"\nVENTAS DE DICIEMBRE MENORES A 30";
-    for(int i=0; i<n; i++){
-        if(EMPLEADOS[i].ven[11]<30){
-            cout<<"\nNumero: "<<EMPLEADOS[i].num<<endl;
-            cout<<"Nombre: "<<EMPLEADOS[i].nom<<endl<<endl;
+    for(int i = 0; i < n; i++) {
+        if(EMPLEADOS[i].ven[11] < 30) {
+            if (!ventaDiciembreMenor30) {
+            cout << "\nVENTAS DE DICIEMBRE MENORES A 30\n";
+            ventaDiciembreMenor30 = true;
+            }
+        cout << "Numero: " << EMPLEADOS[i].num << endl;
+        cout << "Nombre: " << EMPLEADOS[i].nom << endl << endl;
         }
     }
     return 0;
