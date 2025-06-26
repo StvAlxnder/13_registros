@@ -20,7 +20,7 @@ void imprimeContacto(contactoEmail &);
 int main(){
     int n, op, op2, edad, m;
     string nom, user, domain, serv;
-    char sex;
+    char sex, salir;
     correo email;
     contactoEmail cont, lista[100];
     n = 0;
@@ -34,8 +34,7 @@ int main(){
         cout<<"5. Eliminar un contacto"<<endl;
         cout<<"6. Buscar contacto por email"<<endl;
         cout<<"0. Salir del programa"<<endl;
-        cout<<"Elige una opcion"<<endl;
-        cin>>op;
+        cout<<"Elige una opcion: "; cin>>op;
         switch(op){
             case 1:
                 system("cls");
@@ -87,6 +86,7 @@ int main(){
                         cout<<"Ingrese el dominio del correo electronico: "; cin>>lista[m-1].email.domain;
                         break;
                 }
+                break;
             case 3:
                 system("cls");
                 for(int i = 0; i<n; i++){
@@ -116,6 +116,7 @@ int main(){
                     lista[i]=lista[i+1];
                 }
                 n-=1;
+                break;
             case 6:
                 system("cls");
                 cout<<"Busqueda de conctacto por email"<<endl;
@@ -128,8 +129,19 @@ int main(){
                     }
                 system("pause");
                 }
+                break;
             case 0:
-                cout<<"Esta seguro de salir? (s/n)";
+                cout<<"Esta seguro de salir? (S/N)"<<endl;
+                cin>>salir;
+                switch(salir){
+                    case 'S':
+                        system("cls");
+                        cout<<"Fin del programa.";
+                        break;
+                    case 'N':
+                        op=op+1;
+                        break;
+                }
                 break;
             default:
                 break;
