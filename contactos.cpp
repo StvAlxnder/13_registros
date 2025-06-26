@@ -19,7 +19,7 @@ void imprimeContacto(contactoEmail &);
 
 int main(){
     int n, op, op2, edad, m;
-    string nom, user, domain;
+    string nom, user, domain, serv;
     char sex;
     correo email;
     contactoEmail cont, lista[100];
@@ -30,7 +30,9 @@ int main(){
         cout<<"1. Agregar un contacto"<<endl;
         cout<<"2. Modificar un contacto"<<endl;
         cout<<"3. Mostrar contactos"<<endl;
-        cout<<"4. Eliminar un contacto"<<endl;
+        cout<<"4. Buscar contacto por servidor de correo"<<endl;
+        cout<<"5. Eliminar un contacto"<<endl;
+        cout<<"6. Buscar contacto por email"<<endl;
         cout<<"0. Salir del programa"<<endl;
         cout<<"Elige una opcion"<<endl;
         cin>>op;
@@ -90,17 +92,42 @@ int main(){
                 for(int i = 0; i<n; i++){
                     cout<<"Contacto #"<<i+1<<endl;
                     imprimeContacto(lista[i]);
-                    cout<<endl;
+                    cout<<"--------------------"<<endl;
                 }
                 system("pause");
                 break;
             case 4:
+                system("cls");
+                cout<<"Buscar contacto por servidor de correo"<<endl;
+                cout<<"Ingrese el servidor: "; cin>>serv;
+                for(int i=0; i<n; i++){
+                    if(lista[i].email.domain==serv){
+                        cout<<"Contacto #"<<i+1<<endl;
+                        imprimeContacto(lista[i]);
+                        cout<<endl;
+                    }
+                }
+                system("pause");
+                break;
+            case 5:
                 system("cls");
                 cout<<"Ingrese el numero de contacto que desea eliminar: "; cin>>m;
                 for(int i=m-1; i<n; i++){
                     lista[i]=lista[i+1];
                 }
                 n-=1;
+            case 6:
+                system("cls");
+                cout<<"Busqueda de conctacto por email"<<endl;
+                cout<<"Ingrese el usuario: "; cin>>user;
+                cout<<"Ingrese el dominio: "; cin>>domain;
+                leerCorreo(email, user, domain);
+                for(int i=0; i<n; i++){
+                    if((email.user==lista[i].email.user)&&(email.domain==lista[i].email.domain)){
+                        imprimeContacto(lista[i]);
+                    }
+                system("pause");
+                }
             case 0:
                 cout<<"Esta seguro de salir? (s/n)";
                 break;
