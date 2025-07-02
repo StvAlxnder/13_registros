@@ -1,26 +1,13 @@
 #include <iostream>
+#include "contacto.h"
+#include "gestorContactos.h"
+#define MAX 10
 using namespace std;
-
-struct correo{
-    string user;
-    string domain;
-};
-
-struct contactoEmail{
-    string nom;
-    char sex;
-    int edad;
-    correo email;
-};
-
-void leerContacto(contactoEmail &, string, char, int, correo);
-void leerCorreo(correo &, string, string);
-void imprimeContacto(contactoEmail &);
 
 int main(){
     int n, op, op2, edad, m;
     string nom, user, domain, serv;
-    char sex, salir;
+    char sex, SN;
     correo email;
     contactoEmail cont, lista[100];
     n = 0;
@@ -50,14 +37,33 @@ int main(){
 
                 leerCorreo(email, user, domain);
                 leerContacto(cont, nom, sex, edad, email);
-                //imprimeContacto(cont);
 
-                lista[n] = cont;
-                n++;
+                cout<<"\nHa ingresado la siguiente informacion: "<<endl;
+                imprimeContacto(cont);
+                cout<<"Esta informacion es correcta? (S/N): ";
+                cin>>SN;
+                if(SN == 'S' || SN == 's'){
+                    if(n<MAX){
+                        agregarContacto(lista, cont, n);
+                        cout<<"Registro exitoso"<<endl;
+                    }
+                    else{
+                        cout<<"Limite de contactos alcanzado<<endl";
+                    }
+                }
+                else{
+                    cout<<"Se cancelo la operacion"<<endl;
+                }
                 system("pause");
                 break;
             case 2:
                 system("cls");
+                if(n == 0){
+                    cout<<"Aun no se han registrado contactos.";
+                }
+                else{
+                    mostrarContactos(lista, n);
+                }
                 cout<<"Modificar un contacto"<<endl;
                 cout<<"Ingrese el numero de contacto que desea modificar: "; cin>>m;
                 cout<<"Indique el dato que va a modificar"<<endl;
@@ -132,8 +138,8 @@ int main(){
                 break;
             case 0:
                 cout<<"Esta seguro de salir? (S/N)"<<endl;
-                cin>>salir;
-                switch(salir){
+                cin>>SN;
+                switch(SN){
                     case 'S':
                         system("cls");
                         cout<<"Fin del programa.";
@@ -148,23 +154,4 @@ int main(){
         }
     } while(op != 0);
     return 0;
-}
-
-void leerContacto(contactoEmail &c, string n, char s, int e, correo em){
-    c.nom=n;
-    c.sex=s;
-    c.edad=e;
-    c.email=em;
-}
-
-void leerCorreo(correo &c, string u, string d){
-    c.user=u;
-    c.domain=d;
-}
-
-void imprimeContacto(contactoEmail &c){
-    cout<<"\nNombre: "<<c.nom<<endl;
-    cout<<"Sexo: "<<c.sex<<endl;
-    cout<<"Edad: "<<c.edad<<endl;
-    cout<<"Correo: "<<c.email.user<<"@"<<c.email.domain<<endl<<endl;
 }
